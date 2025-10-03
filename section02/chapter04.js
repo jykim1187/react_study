@@ -26,10 +26,24 @@ function funcA(p1,p2,p3){
 funcA(...arr1);
 
 // 2.Rest 매개변수
-//->Rest
+//함수의 매개변수에 사용되어, 남은 인자들을 배열로 모으는 것
+// js에서 ...은 2가지로 나뉨 spread와 rest파라미터
+// 즉, spread는 배열이나 객체를 하나씩 펼쳐서 복사하거나 합칠 때 사용한다면,
+// rest파라미터는 함수의 매개변수에 사용되어, 남은 인자들을 배열로 모으는 것이다.
 
-function funcB(...rest){
-    console.log(rest);
+// function funcB(...rest){
+//     console.log(rest);
+// }
+
+// funcB(...arr1)
+
+function printNumbers(a, b, ...rest) {
+  console.log(a);    // 첫 번째 인자
+  console.log(b);    // 두 번째 인자
+  console.log(rest); // 나머지 인자들을 배열로 모음
 }
 
-funcB(...arr1)
+printNumbers(1, 2, 3, 4, 5);
+// a = 1
+// b = 2
+// rest = [3, 4, 5]
