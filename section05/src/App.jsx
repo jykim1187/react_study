@@ -1,16 +1,15 @@
 import './App.css'
-import Footer from './components/Footer';
-import Header from "./components/Header";
-import Main from './components/Main';
+import {useState} from "react"
+import Bulb from './components/Bulb';
+import Counter from './components/Counter';
 
 
 function App() {
 
   return (
     <>
-      <Header />
-      <Main />
-      <Footer />
+    <Bulb />  
+    <Counter />
     </>
   );
 }
