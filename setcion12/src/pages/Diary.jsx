@@ -1,10 +1,31 @@
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import Header from "../components/Header";
+import Viewer from "../components/Viewer"
+import Button from "../components/Button";
+import useDiary from "../hooks/useDiary";
+import { getStringedDate } from "../util/getStringedDate";
 
 const Diary = () =>{
-//    URL 파라미터를 가져오는 훅 useParams. *쿼리스트링을 가져오는 훅은 useSearchParams
     const params = useParams();
-  
-    return <div>{params.id}번 일기입니다</div>
+    const nav = useNavigate();
+    const curDiaryItem = useDiary(params.id);
+    
+    if(!curDiaryItem){
+        return <div>데이터 로딩 중...!</div>
+    }
+
+    const {createdDate, emotionId, content} = curDiaryItem;
+    const title = getStringedDate(new Date(createdDate))
+
+
+    return <div>
+        <Header
+        title={`${title}기록`}
+        leftChild={<Button onClick={()=>nav(-1)} text={"<뒤로가기"}/>}
+        rightChild={<Button onClick={()=>nav(`/edit/${params.id}`)} text={"수정하기"}/>}
+        />
+        <Viewer emotionId={emotionId} content={content} />
+            </div>
 }
 
 export default Diary;
